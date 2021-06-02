@@ -1,0 +1,57 @@
+﻿@page "/calculator-three"
+@inject HttpClient Http
+
+<h1>Calculator</h1>
+
+<input type="number" @bind-value="first" />
+
+<button class="btn btn-primary" @onclick="Add">+</button>
+
+<button class="btn btn-primary" @onclick="Subtract">-</button>
+
+<button class="btn btn-primary" @onclick="Multiply">*</button>
+
+<button class="btn btn-primary" @onclick="Divide">/</button>
+
+<input type="number" @bind-value="second" />
+
+
+<p>First: @first</p>
+<p>Second: @second</p>
+<p>Result: @result</p>
+
+
+@code {
+    private CalcApi calculator;
+
+    protected override void OnInitialized()
+    {
+        calculator = new CalcApi(Http);
+        Console.WriteLine("Initialized external api");
+    }
+
+    private int first = 0;
+    private int second = 0;
+    private int result = 0;
+
+    private async Task Add()
+    {
+        result = await calculator.Add(first, second);
+    }
+
+    private async Task Subtract()
+    {
+        result = await calculator.Subtract(first, second);
+    }
+
+    private async Task Multiply()
+    {
+        result = await calculator.Multiply(first, second);
+    }
+
+    private async Task Divide()
+    {
+        result = await calculator.Divide(first, second);
+    }
+
+}

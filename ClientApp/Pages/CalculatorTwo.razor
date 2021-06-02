@@ -1,0 +1,51 @@
+﻿@page "/calculator-two"
+
+@using CalcExternal = CalculatorLib.Calculator;
+
+<h1>Calculator</h1>
+
+<input type="number" @bind-value="first" />
+
+<button class="btn btn-primary" @onclick="Add">+</button>
+
+<button class="btn btn-primary" @onclick="Subtract">-</button>
+
+<button class="btn btn-primary" @onclick="Multiply">*</button>
+
+<button class="btn btn-primary" @onclick="Divide">/</button>
+
+<input type="number" @bind-value="second"/>
+
+<p>First: @first</p>
+<p>Second: @second</p>
+<p>Result: @result</p>
+
+
+@code {
+    private CalcExternal calculator = new CalcExternal();
+
+    private int first = 0;
+    private int second = 0;
+    private int result = 0;
+
+    private void Add()
+    {
+        result = calculator.Add(first, second);
+    }
+
+    private void Subtract()
+    {
+        result = calculator.Subtract(first, second);
+    }
+
+    private void Multiply()
+    {
+        result = calculator.Multiply(first, second);
+    }
+
+    private void Divide()
+    {
+        result = calculator.Divide(first, second);
+    }
+
+}
